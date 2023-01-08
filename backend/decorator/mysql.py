@@ -3,8 +3,9 @@
 # @Time    : 2020/12/22 下午11:14
 # @Author  : lovemefan
 # @File    : mysql.py
-from backend.dao.DataBasePool import DataBasePool
+
 from backend.utils.logger import logger
+from backend.dao.DataBasePool import DataBasePool
 
 
 class Mysql:
