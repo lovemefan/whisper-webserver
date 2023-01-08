@@ -29,7 +29,8 @@ COPY . /app
 
 RUN python3 -m venv $VENV \
     && $VENV/bin/pip install -U pip setuptools -i https://pypi.tuna.tsinghua.edu.cn/simple \
-    && $VENV/bin/pip install -r /app/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+    && $VENV/bin/pip install -r /app/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple \
+    && rm -rf ~/.cache/pip
 
 
 ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:9000", "--workers", "1", "--timeout", "0", "backend.app:app", "-k", "uvicorn.workers.UvicornWorker"]

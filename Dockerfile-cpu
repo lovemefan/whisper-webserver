@@ -13,7 +13,8 @@ ENV PATH="${PATH}:${VENV}/bin"
 
 RUN python3 -m venv $VENV \
     && $VENV/bin/pip install -U pip setuptools -i https://pypi.tuna.tsinghua.edu.cn/simple \
-    && $VENV/bin/pip install -r /app/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+    && $VENV/bin/pip install -r /app/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple \
+    && rm -rf ~/.cache/pip
 
 WORKDIR /app
 
