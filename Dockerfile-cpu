@@ -5,7 +5,6 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -qq install --no-install-recommends \
     git \
     ffmpeg \
-    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 ENV VENV="whisper"
