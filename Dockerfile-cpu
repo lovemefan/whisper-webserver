@@ -1,8 +1,16 @@
 FROM python:3.11.1-slim
 
-RUN export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -qq update \
-    && apt-get -qq install --no-install-recommends \
+RUN export DEBIAN_FRONTEND=noninteractive &&\
+    echo "deb https://mirrors.tencent.com/debian/ bullseye main non-free contrib" >/etc/apt/sources.list && \
+    echo "deb https://mirrors.tencent.com/debian-security/ bullseye-security main" >>/etc/apt/sources.list && \
+    echo "deb https://mirrors.tencent.com/debian/ bullseye-updates main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb https://mirrors.tencent.com/debian/ bullseye-backports main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb-src https://mirrors.tencent.com/debian/ bullseye main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb-src https://mirrors.tencent.com/debian-security/ bullseye-security main" >>/etc/apt/sources.list && \
+    echo "deb-src https://mirrors.tencent.com/debian/ bullseye-backports main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb-src https://mirrors.tencent.com/debian/ bullseye-updates main non-free contrib" >>/etc/apt/sources.list \
+    && apt-get -qq update -y \
+    && apt-get -qq install -y --no-install-recommends \
     git \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
