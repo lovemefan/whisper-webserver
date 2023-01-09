@@ -17,11 +17,11 @@ docker run -d --gpus all -p 9000:9000 -e ASR_MODEL=base lovemefan/whisper-webser
 
 # for cpu
 
-docker run -d --gpus all -p 9000:9000 -e ASR_MODEL=base lovemefan/whisper-webserver:amd64
+docker run -d -p 9000:9000 -e ASR_MODEL=base lovemefan/whisper-webserver:amd64
 
 # for mac apple chip
 
-docker run -d --gpus all -p 9000:9000 -e ASR_MODEL=base lovemefan/whisper-webserver:arm64
+docker run -d -p 9000:9000 -e ASR_MODEL=base lovemefan/whisper-webserver:arm64
 
 ```
 
