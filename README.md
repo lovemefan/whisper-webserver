@@ -70,7 +70,7 @@ docker run -d -p 9000:9000 -e ASR_MODEL=base whisper-webserver-arm64
 ```
 
 ## Usage
-use 16hz, 16bit, mono format of wav file
+use 16hz, 16000bit, mono format of wav file
 ```bash
 curl --location --request POST --X POST 'http://localhost:9000/v1/api/speech/recognition' \
 --form 'audio=@/path/audio.wav'
