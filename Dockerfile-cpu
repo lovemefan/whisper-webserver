@@ -1,4 +1,4 @@
-FROM python:3.11.1-slim
+FROM python:3.9-slim-bullseye
 
 RUN export DEBIAN_FRONTEND=noninteractive &&\
     echo "deb https://mirrors.tencent.com/debian/ bullseye main non-free contrib" >/etc/apt/sources.list && \
@@ -9,8 +9,8 @@ RUN export DEBIAN_FRONTEND=noninteractive &&\
     echo "deb-src https://mirrors.tencent.com/debian-security/ bullseye-security main" >>/etc/apt/sources.list && \
     echo "deb-src https://mirrors.tencent.com/debian/ bullseye-backports main non-free contrib" >>/etc/apt/sources.list && \
     echo "deb-src https://mirrors.tencent.com/debian/ bullseye-updates main non-free contrib" >>/etc/apt/sources.list \
-    && apt-get -qq update -y \
-    && apt-get -qq install -y --no-install-recommends \
+    && apt-get  update -y \
+    && apt-get  install -y --no-install-recommends \
     git \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
@@ -22,11 +22,12 @@ WORKDIR /app
 COPY . /app
 
 RUN python3 -m venv $VENV \
-    && $VENV/bin/pip install -U pip setuptools -i https://pypi.tuna.tsinghua.edu.cn/simple \
-    && $VENV/bin/pip install -r /app/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple \
+    && $VENV/bin/pip install --upgrade pip -i https://pypi.mirrors.ustc.edu.cn/simple \
+    && $VENV/bin/pip install -U pip setuptools -i https://pypi.mirrors.ustc.edu.cn/simple \
+    && $VENV/bin/pip install -r /app/requirements.txt -i https://pypi.mirrors.ustc.edu.cn/simple \
     && rm -rf ~/.cache/pip
 
 
 
 
-ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:9000", "--workers", "1", "--timeout", "0", "app.webservice:app", "-k", "uvicorn.workers.UvicornWorker"]
+ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:9000", "--workers", "1", "--timeout", "0", "backend.app:app", "-k", "uvicorn.workers.UvicornWorker"]
