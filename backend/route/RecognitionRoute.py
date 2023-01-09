@@ -53,7 +53,7 @@ async def recognition(request):
 
 
 @recognition_route.post('/detect_language')
-async def segment(request):
+async def detect_language(request):
     audio_file = request.files.get('audio', None)
 
     if not audio_file:
