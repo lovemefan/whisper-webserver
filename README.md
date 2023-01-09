@@ -75,4 +75,46 @@ use 16hz, 16bit, mono format of wav file
 curl --location --request POST --X POST 'http://localhost:9000/v1/api/speech/recognition' \
 --form 'audio=@/path/audio.wav'
 ```
+Response
+```json
+{
+	"message": "Success",
+	"code": 200,
+	"data": {
+		"text": " As for etchings, there are two kinds British and foreign.",
+		"segments": [
+			{
+				"id": 0,
+				"seek": 0,
+				"start": 0,
+				"end": 5,
+				"text": " As for etchings, there are two kinds British and foreign.",
+				"tokens": [
+					50364,
+					1018,
+					337,
+					1030,
+					339,
+					1109,
+					11,
+					456,
+					366,
+					732,
+					3685,
+					6221,
+					293,
+					5329,
+					13,
+					50614
+				],
+				"temperature": 0,
+				"avg_logprob": -0.37133017708273497,
+				"compression_ratio": 0.9344262295081968,
+				"no_speech_prob": 0.04418903589248657
+			}
+		],
+		"language": "en"
+	}
+}
+```
 
