@@ -3,8 +3,8 @@ FROM nvidia/cuda:11.2.0-base-ubuntu18.04
 ENV PYTHON_VERSION=3.9
 
 RUN export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -qq update \
-    && apt-get -qq install --no-install-recommends \
+    && apt-get -qq update -y \
+    && apt-get -qq install -y --no-install-recommends \
     software-properties-common \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt-get -qq install \
