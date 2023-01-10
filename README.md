@@ -14,7 +14,8 @@ Docker hub: https://hub.docker.com/r/lovemefan/whisper-webserver
 ```bash
 # for gpu
 docker run -d --gpus all -p 9000:9000 -e ASR_MODEL=base lovemefan/whisper-webserver:cuda-11.2.0
-
+#or
+docker run -d --gpus all -p 9000:9000 -e ASR_MODEL=base lovemefan/whisper-webserver:cuda-10.2
 # for cpu
 
 docker run -d -p 9000:9000 -e ASR_MODEL=base lovemefan/whisper-webserver:amd64
